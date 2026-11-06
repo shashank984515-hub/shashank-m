@@ -1,0 +1,50 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="100" y1="50" x2="800" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="300" y1="530" x2="600" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(650 220) rotate(90) scale(260 260)">
+      <stop stop-color="#FDE68A" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#FDE68A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <circle cx="650" cy="220" r="260" fill="url(#glow)"/>
+  <circle cx="260" cy="180" r="180" fill="#93C5FD" fill-opacity="0.12"/>
+
+  <g filter="url(#shadow)">
+    <path d="M275 710C275 610 355 555 450 555H450C545 555 625 610 625 710V770C625 827 579 873 522 873H378C321 873 275 827 275 770V710Z" fill="url(#shirt)"/>
+    <path d="M350 695C390 760 413 790 450 790C487 790 510 760 550 695L575 770C521 826 488 850 450 850C412 850 379 826 325 770L350 695Z" fill="#DBEAFE" fill-opacity="0.22"/>
+
+    <path d="M425 515C425 453 450 392 498 364C546 392 571 453 571 515V620H425V515Z" fill="#F3C6A0"/>
+    <path d="M396 420C396 286 445 185 500 185C555 185 605 286 605 420C605 482 584 521 552 560H448C416 521 396 482 396 420Z" fill="#F3C6A0"/>
+
+    <path d="M393 401C420 291 466 220 500 220C534 220 580 291 607 401C620 448 616 509 594 544H406C384 509 380 448 393 401Z" fill="#1F2937"/>
+    <path d="M396 381C438 296 466 258 500 258C534 258 562 296 604 381C582 359 553 338 500 338C447 338 418 359 396 381Z" fill="#111827"/>
+    <path d="M430 350C436 335 460 311 500 311C543 311 565 336 570 349L588 458C569 470 546 478 500 478C454 478 431 470 412 458L430 350Z" fill="#1F2937"/>
+
+    <ellipse cx="449" cy="468" rx="22" ry="16" fill="#0F172A"/>
+    <ellipse cx="551" cy="468" rx="22" ry="16" fill="#0F172A"/>
+    <circle cx="444" cy="463" r="5" fill="#F8FAFC"/>
+    <circle cx="546" cy="463" r="5" fill="#F8FAFC"/>
+    <path d="M453 521C470 536 486 542 500 542C514 542 530 536 547 521" stroke="#9A5A3C" stroke-width="7" stroke-linecap="round"/>
+    <path d="M482 483L500 500L518 483" stroke="#BC7B5E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M373 430C373 399 400 374 432 374H468C480 374 489 383 489 395V412C489 424 480 433 468 433H432C400 433 373 407 373 430Z" fill="#F3C6A0"/>
+    <path d="M627 430C627 399 600 374 568 374H532C520 374 511 383 511 395V412C511 424 520 433 532 433H568C600 433 627 407 627 430Z" fill="#F3C6A0"/>
+
+    <path d="M404 700L450 760L496 700" stroke="#DDEAFE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M503 700L550 760L596 700" stroke="#DDEAFE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="450" y="840" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="68" font-weight="700" fill="#F8FAFC">Shashank</text>
+</svg>
