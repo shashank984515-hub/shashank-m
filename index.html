@@ -3,975 +3,1185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f6f7ef">
-    <meta name="description" content="Simple, practical ideas and free tools to help you build a healthier everyday routine.">
-    <title>Wellnest — A little better, every day</title>
+    <meta name="theme-color" content="#f6f7f2">
+    <meta name="description" content="Meet Shashank: an aspiring engineer sharing his story, education, interests, goals, and achievements.">
+    <title>Shashank - Personal Portfolio</title>
     <style>
         :root {
             color-scheme: light;
-            --ink: #19372c;
-            --muted: #64746a;
-            --green: #2f704f;
-            --green-dark: #21573c;
-            --lime: #d7ed9c;
-            --cream: #f6f7ef;
+            --page: #f6f7f2;
             --paper: #fffefa;
-            --line: #e5e9dd;
-            --shadow: 0 18px 50px rgba(37, 66, 47, .09);
+            --ink: #20271f;
+            --muted: #71796f;
+            --green: #355b46;
+            --green-dark: #294b39;
+            --lime: #d7ed9f;
+            --line: #e6e9df;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", Arial, sans-serif;
+            --width: 1120px;
         }
 
-        * { box-sizing: border-box; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 92px;
+        }
 
         body {
             margin: 0;
-            background: var(--cream);
+            background: var(--page);
             color: var(--ink);
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: var(--sans);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
-        button, input { font: inherit; }
-        button, a { -webkit-tap-highlight-color: transparent; }
-        a { color: inherit; }
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #769a59;
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            z-index: 20;
+            top: 12px;
+            left: 12px;
+            padding: 10px 16px;
+            transform: translateY(-160%);
+            border-radius: 6px;
+            background: var(--paper);
+            color: var(--ink);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
 
         .site-header {
             position: sticky;
-            top: 0;
             z-index: 10;
-            border-bottom: 1px solid rgba(229, 233, 221, .8);
-            background: rgba(246, 247, 239, .94);
+            top: 0;
+            border-bottom: 1px solid rgb(230 233 223 / 82%);
+            background: rgb(246 247 242 / 94%);
             backdrop-filter: blur(14px);
         }
 
-        .nav-wrap, .container {
-            width: min(1120px, calc(100% - 40px));
+        .nav-wrap,
+        .section,
+        .hero-wrap,
+        .footer-wrap {
+            width: min(var(--width), calc(100% - 48px));
             margin-inline: auto;
         }
 
         .nav-wrap {
-            min-height: 76px;
             display: flex;
+            min-height: 74px;
             align-items: center;
             justify-content: space-between;
             gap: 24px;
         }
 
         .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            flex-shrink: 0;
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.06em;
             text-decoration: none;
-            font-size: 1.22rem;
-            font-weight: 800;
-            letter-spacing: -.04em;
         }
 
-        .brand-mark {
-            display: grid;
-            width: 35px;
-            height: 35px;
-            place-items: center;
-            border-radius: 12px;
-            background: var(--green);
-            color: white;
-            font-size: 1.1rem;
+        .brand span {
+            color: var(--green);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: clamp(14px, 2.4vw, 29px);
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
         .nav-links a {
-            color: #53665a;
-            font-size: .92rem;
+            color: #525a50;
+            font-size: 0.81rem;
             font-weight: 600;
             text-decoration: none;
-            transition: color .2s ease;
+            transition: color 160ms ease;
         }
 
-        .nav-links a:hover { color: var(--green); }
+        .nav-links a:hover {
+            color: var(--green);
+        }
 
-        .nav-cta, .button {
-            display: inline-flex;
+        .nav-links .nav-contact {
+            padding: 10px 16px;
+            border: 1px solid #cbd4c8;
+            border-radius: 999px;
+            color: var(--green-dark);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
             align-items: center;
             justify-content: center;
-            gap: 9px;
-            min-height: 46px;
-            padding: 0 20px;
-            border: 0;
-            border-radius: 999px;
-            background: var(--green);
-            color: white;
-            font-weight: 700;
-            text-decoration: none;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--paper);
+            color: var(--ink);
             cursor: pointer;
-            transition: transform .2s ease, background .2s ease;
         }
 
-        .nav-cta { min-height: 42px; padding-inline: 17px; font-size: .9rem; }
-        .button:hover, .nav-cta:hover { background: var(--green-dark); transform: translateY(-2px); }
-        .button.secondary { background: #edf2e8; color: var(--green-dark); }
-        .button.secondary:hover { background: #e2ebd9; }
+        .menu-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
 
         .hero {
-            position: relative;
             overflow: hidden;
-            padding: 78px 0 68px;
+            padding: clamp(70px, 11vw, 132px) 0 94px;
         }
 
-        .hero::before {
-            position: absolute;
-            top: -230px;
-            right: -100px;
-            width: 650px;
-            height: 650px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #e6efd4 0, rgba(230, 239, 212, 0) 69%);
-            content: "";
-            pointer-events: none;
-        }
-
-        .hero-grid {
-            position: relative;
+        .hero-wrap {
             display: grid;
-            grid-template-columns: 1.06fr .94fr;
+            grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
             align-items: center;
-            gap: 64px;
+            gap: clamp(40px, 8vw, 112px);
         }
 
         .eyebrow {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin: 0 0 18px;
+            gap: 10px;
+            margin: 0 0 20px;
             color: var(--green);
-            font-size: .78rem;
-            font-weight: 800;
-            letter-spacing: .14em;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
         }
 
         .eyebrow::before {
-            width: 22px;
-            height: 2px;
-            background: #8bad64;
+            width: 24px;
+            height: 1px;
+            background: currentColor;
             content: "";
         }
 
-        h1, h2, h3, p { margin-top: 0; }
-        h1, h2, h3 { letter-spacing: -.045em; }
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        .quote {
+            font-family: var(--serif);
+            font-weight: 500;
+            letter-spacing: -0.055em;
+        }
 
         h1 {
-            max-width: 610px;
+            max-width: 650px;
             margin-bottom: 20px;
-            font-size: clamp(3rem, 6vw, 5.3rem);
-            line-height: 1.02;
+            font-size: clamp(3.55rem, 8.2vw, 7rem);
+            line-height: 0.99;
         }
 
-        h1 em {
+        h1 span {
             color: var(--green);
-            font-family: Georgia, "Times New Roman", serif;
-            font-weight: 500;
-        }
-
-        .hero-copy {
-            max-width: 490px;
-            margin-bottom: 28px;
-            color: var(--muted);
-            font-size: 1.08rem;
-        }
-
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-        .hero-note {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 28px;
-            color: var(--muted);
-            font-size: .85rem;
-        }
-
-        .avatars { display: flex; padding-left: 5px; }
-        .avatars span {
-            display: grid;
-            width: 29px;
-            height: 29px;
-            margin-left: -5px;
-            place-items: center;
-            border: 2px solid var(--cream);
-            border-radius: 50%;
-            background: #ead9bd;
-            font-size: .8rem;
-        }
-        .avatars span:nth-child(2) { background: #c8dfc7; }
-        .avatars span:nth-child(3) { background: #f0cdb5; }
-
-        .hero-art {
-            position: relative;
-            display: grid;
-            min-height: 430px;
-            place-items: center;
-        }
-
-        .sun-disc {
-            position: absolute;
-            top: 8%;
-            right: 12%;
-            width: 310px;
-            height: 310px;
-            border-radius: 50%;
-            background: #e5edcf;
-        }
-
-        .art-card {
-            position: relative;
-            z-index: 1;
-            width: min(100%, 400px);
-            min-height: 340px;
-            padding: 30px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,.7);
-            border-radius: 30px;
-            background: linear-gradient(145deg, #cfe0bd, #eff0d9 62%, #f6d9bb);
-            box-shadow: 0 25px 60px rgba(56, 83, 54, .17);
-        }
-
-        .art-card::before, .art-card::after {
-            position: absolute;
-            border: 1px solid rgba(255,255,255,.55);
-            border-radius: 50%;
-            content: "";
-        }
-        .art-card::before { width: 310px; height: 310px; right: -72px; bottom: -155px; }
-        .art-card::after { width: 220px; height: 220px; right: -27px; bottom: -110px; }
-
-        .art-label {
-            display: inline-block;
-            padding: 7px 12px;
-            border: 1px solid rgba(255,255,255,.75);
-            border-radius: 999px;
-            background: rgba(255,255,255,.35);
-            color: #36573d;
-            font-size: .76rem;
-            font-weight: 700;
-        }
-
-        .plant {
-            position: absolute;
-            right: 40px;
-            bottom: 30px;
-            font-size: 9rem;
-            filter: drop-shadow(0 10px 12px rgba(56, 83, 54, .12));
-            transform: rotate(-8deg);
-        }
-
-        .art-message {
-            position: absolute;
-            z-index: 1;
-            right: 24px;
-            bottom: 23px;
-            left: 24px;
-            color: #244b34;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.45rem;
             font-style: italic;
         }
 
-        .float-chip {
-            position: absolute;
-            z-index: 2;
+        .hero-copy {
+            max-width: 510px;
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 1.06rem;
+        }
+
+        .hero-actions {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 0 20px;
+            border: 1px solid var(--green);
+            border-radius: 999px;
+            background: var(--green);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 650;
+            text-decoration: none;
+            transition: background 160ms ease, transform 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            background: var(--green-dark);
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .button-secondary:hover {
+            background: var(--paper);
+        }
+
+        .button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .portrait-wrap {
+            position: relative;
+            width: min(100%, 390px);
+            justify-self: end;
+        }
+
+        .portrait-wrap::before {
+            position: absolute;
+            top: -19px;
+            right: -17px;
+            width: 60%;
+            height: 60%;
+            border-top: 1px solid #bdc9a9;
+            border-right: 1px solid #bdc9a9;
+            border-radius: 0 32px 0 0;
+            content: "";
+        }
+
+        .portrait-card {
+            position: relative;
+            overflow: hidden;
+            width: min(100%, 330px);
+            aspect-ratio: 1;
+            border: 8px solid var(--paper);
+            border-radius: 50%;
+            background: #e5ecdc;
+            box-shadow: 0 24px 70px rgb(52 74 52 / 12%);
+        }
+
+        .portrait-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 18%;
+            transform: scale(1.12);
+        }
+
+        .portrait-note {
+            position: absolute;
+            right: -34px;
+            bottom: 30px;
+            max-width: 200px;
+            padding: 15px 19px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--paper);
+            box-shadow: 0 12px 30px rgb(34 42 32 / 9%);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .portrait-note strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--ink);
+            font-size: 0.88rem;
+        }
+
+        .welcome-strip {
+            border-block: 1px solid var(--line);
+            background: #f0f2e9;
+        }
+
+        .welcome-inner {
+            display: flex;
+            min-height: 78px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .welcome-inner p {
+            margin: 0;
+            color: #465345;
+            font-family: var(--serif);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-style: italic;
+        }
+
+        .welcome-inner span {
+            color: var(--muted);
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .section {
+            padding-block: clamp(70px, 10vw, 112px);
+        }
+
+        .section-heading {
+            max-width: 670px;
+            margin-bottom: 42px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 14px;
+        }
+
+        h2 {
+            margin-bottom: 14px;
+            font-size: clamp(2.5rem, 5vw, 4.15rem);
+            line-height: 1.04;
+        }
+
+        .section-intro {
+            max-width: 590px;
+            margin-bottom: 0;
+            color: var(--muted);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 24px;
+        }
+
+        .about-note,
+        .detail-card,
+        .timeline-item,
+        .skill-card,
+        .interest-card,
+        .goal-card,
+        .achievement-card,
+        .contact-card {
             border: 1px solid var(--line);
             border-radius: 16px;
             background: var(--paper);
-            box-shadow: var(--shadow);
-            font-size: .83rem;
-            font-weight: 700;
-        }
-        .float-chip strong { display: block; font-size: .95rem; }
-        .float-chip small { display: block; color: var(--muted); font-weight: 500; }
-        .float-chip.water { top: 17%; left: -1%; }
-        .float-chip.streak { right: -2%; bottom: 14%; }
-        .chip-icon { font-size: 1.35rem; }
-
-        .quick-stats {
-            padding: 20px 0;
-            border-block: 1px solid var(--line);
-            background: rgba(255, 254, 250, .55);
         }
 
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .stat {
-            padding: 8px 20px;
-            text-align: center;
-        }
-        .stat + .stat { border-left: 1px solid var(--line); }
-        .stat strong { display: block; font-size: 1.2rem; }
-        .stat span { color: var(--muted); font-size: .84rem; }
-
-        section.content-section { padding: 88px 0; }
-        .section-heading {
+        .about-note {
             display: flex;
-            align-items: end;
+            min-height: 260px;
+            flex-direction: column;
             justify-content: space-between;
-            gap: 28px;
-            margin-bottom: 32px;
+            padding: clamp(26px, 4vw, 42px);
         }
 
-        .section-heading h2 {
-            max-width: 560px;
+        .quote {
+            max-width: 510px;
+            margin-bottom: 28px;
+            font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+            line-height: 1.18;
+        }
+
+        .about-note p:last-child {
             margin-bottom: 0;
-            font-size: clamp(2rem, 4vw, 3.1rem);
-            line-height: 1.12;
+            color: var(--muted);
         }
-        .section-heading p { max-width: 420px; margin-bottom: 3px; color: var(--muted); }
-        .section-heading.center { display: block; text-align: center; }
-        .section-heading.center h2 { margin-inline: auto; }
-        .section-heading.center p { margin: 12px auto 0; }
 
-        .topic-grid {
+        .detail-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .detail-card {
+            padding: 22px;
+        }
+
+        .detail-card span,
+        .detail-card strong {
+            display: block;
+        }
+
+        .detail-card span {
+            margin-bottom: 9px;
+            color: var(--muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .detail-card strong {
+            font-size: 1rem;
+        }
+
+        .soft-section {
+            border-block: 1px solid var(--line);
+            background: #f0f2e9;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
         }
 
-        .topic-card {
-            min-height: 218px;
-            padding: 23px;
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: var(--paper);
-            transition: transform .2s ease, box-shadow .2s ease;
+        .timeline-item {
+            min-height: 245px;
+            padding: 27px;
         }
-        .topic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-        .topic-icon {
-            display: grid;
-            width: 48px;
-            height: 48px;
-            margin-bottom: 20px;
-            place-items: center;
-            border-radius: 15px;
-            background: #edf3e6;
-            font-size: 1.5rem;
-        }
-        .topic-card:nth-child(2) .topic-icon { background: #f8edda; }
-        .topic-card:nth-child(3) .topic-icon { background: #e5eff0; }
-        .topic-card:nth-child(4) .topic-icon { background: #f7e8e1; }
-        .topic-card h3 { margin-bottom: 8px; font-size: 1.13rem; }
-        .topic-card p { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
 
-        .tools-section { background: #edf1e6; }
-        .tools-grid {
+        .timeline-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 31px;
+        }
+
+        .timeline-number {
+            display: grid;
+            width: 39px;
+            height: 39px;
+            place-items: center;
+            border-radius: 50%;
+            background: #edf2e4;
+            color: var(--green);
+            font-family: var(--serif);
+            font-size: 1.1rem;
+        }
+
+        .timeline-stage {
+            color: var(--green);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .timeline-item h3,
+        .skill-card h3,
+        .goal-card h3,
+        .achievement-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+        }
+
+        .timeline-item p,
+        .skill-card p,
+        .goal-card p,
+        .achievement-card p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 0.91rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .skill-card {
+            min-height: 190px;
+            padding: 23px;
+        }
+
+        .card-mark {
+            display: grid;
+            width: 41px;
+            height: 41px;
+            margin-bottom: 22px;
+            place-items: center;
+            border-radius: 12px;
+            background: #edf2e4;
+            color: var(--green);
+            font-family: var(--serif);
+            font-size: 1.15rem;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-flex;
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: #566052;
+            font-size: 0.76rem;
+        }
+
+        .interests {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            gap: 14px;
         }
-        .tool-card {
-            padding: 25px;
-            border: 1px solid rgba(213, 222, 203, .9);
-            border-radius: 22px;
-            background: var(--paper);
-            box-shadow: 0 8px 24px rgba(37, 66, 47, .035);
-        }
-        .tool-title {
+
+        .interest-card {
             display: flex;
+            min-height: 91px;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 7px;
+            gap: 16px;
+            padding: 18px 20px;
         }
-        .tool-title .topic-icon { flex: 0 0 44px; width: 44px; height: 44px; margin: 0; }
-        .tool-title h3 { margin: 0; font-size: 1.12rem; }
-        .tool-card > p { margin-bottom: 20px; color: var(--muted); font-size: .88rem; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .field { display: grid; gap: 6px; margin-bottom: 12px; }
-        .field label { color: #4b5e51; font-size: .82rem; font-weight: 700; }
-        .field input {
-            width: 100%;
-            min-height: 44px;
-            padding: 9px 12px;
-            border: 1px solid #dfe5d8;
-            border-radius: 11px;
-            outline: none;
-            background: #fff;
-            color: var(--ink);
-        }
-        .field input:focus { border-color: #75a278; box-shadow: 0 0 0 3px rgba(117,162,120,.15); }
-        .tool-card .button { min-height: 42px; width: 100%; padding-inline: 14px; font-size: .9rem; }
-        .result {
-            min-height: 48px;
-            margin: 13px 0 0;
-            padding: 11px 12px;
-            border-radius: 11px;
-            background: #f2f5ee;
-            color: #53665a;
-            font-size: .88rem;
-        }
-        .result strong { color: var(--green-dark); }
-        .result:empty { display: none; }
-        .fine-print { margin: 9px 0 0 !important; color: #778177 !important; font-size: .75rem !important; }
 
-        .habit-list { display: grid; gap: 9px; margin: 0 0 14px; padding: 0; list-style: none; }
-        .habit-list label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-height: 42px;
-            padding: 8px 11px;
-            border: 1px solid #e8ebdf;
-            border-radius: 11px;
-            background: #fff;
-            color: #4b5e51;
-            font-size: .88rem;
-            cursor: pointer;
-        }
-        .habit-list input { width: 17px; height: 17px; accent-color: var(--green); }
-        .habit-progress { display: flex; justify-content: space-between; margin: 8px 0 7px; color: #5f7064; font-size: .8rem; }
-        .progress-track { height: 8px; overflow: hidden; border-radius: 99px; background: #e7ecdf; }
-        .progress-fill { width: 0; height: 100%; border-radius: inherit; background: #6f9c56; transition: width .25s ease; }
-
-        .tip-box {
-            display: flex;
-            min-height: 112px;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 13px;
-            padding: 16px;
-            border-radius: 14px;
-            background: #f3f5ec;
-        }
-        .tip-box p { margin: 0; color: #45594b; font-family: Georgia, "Times New Roman", serif; font-size: 1rem; }
-        .tip-box span { color: #788174; font-size: .76rem; font-weight: 700; }
-
-        .quiz-question { margin: 15px 0 12px; font-weight: 700; }
-        .quiz-options { display: grid; gap: 8px; }
-        .quiz-option {
-            padding: 10px 12px;
-            border: 1px solid #e1e6dc;
-            border-radius: 10px;
-            background: white;
-            color: #4b5e51;
-            text-align: left;
-            cursor: pointer;
-        }
-        .quiz-option:hover:not(:disabled) { border-color: #87a97d; background: #f7faf4; }
-        .quiz-option:disabled { cursor: default; }
-        .quiz-option.correct { border-color: #7daa68; background: #edf5e7; color: #285d38; }
-        .quiz-option.incorrect { border-color: #dba095; background: #fbefec; color: #8b4437; }
-        .quiz-controls { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; }
-        .quiz-controls .button { width: auto; min-height: 38px; }
-
-        .timer-display {
-            margin: 19px 0 17px;
-            color: var(--green-dark);
-            font-variant-numeric: tabular-nums;
-            font-size: 2.8rem;
-            font-weight: 750;
-            letter-spacing: -.06em;
-            text-align: center;
-        }
-        .timer-controls { display: flex; gap: 9px; }
-        .timer-controls .button { flex: 1; }
-
-        .counter-line { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 16px 0; }
-        .counter-number { color: var(--green-dark); font-size: 2.6rem; font-weight: 800; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
-        .counter-unit { color: var(--muted); font-size: .86rem; }
-        .counter-controls { display: flex; gap: 9px; }
-        .counter-controls .button { flex: 1; }
-        .counter-controls .button:not(.secondary) { min-width: 52px; padding-inline: 12px; font-size: 1.2rem; }
-
-        .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-        .article-card {
-            overflow: hidden;
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: var(--paper);
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-        .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-        .article-art {
+        .interest-icon {
             display: grid;
-            min-height: 170px;
+            width: 43px;
+            height: 43px;
+            flex: 0 0 auto;
             place-items: center;
-            background: linear-gradient(140deg, #dce8ca, #f3e8cd);
-            font-size: 4rem;
+            border-radius: 50%;
+            background: #edf2e4;
+            color: var(--green);
+            font-size: 0.9rem;
+            font-weight: 700;
         }
-        .article-card:nth-child(2) .article-art { background: linear-gradient(140deg, #d8e6e5, #e8eedb); }
-        .article-card:nth-child(3) .article-art { background: linear-gradient(140deg, #f0dfd4, #f5ebd7); }
-        .article-body { padding: 20px; }
-        .article-tag { color: var(--green); font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-        .article-body h3 { margin: 9px 0; font-size: 1.2rem; }
-        .article-body p { margin-bottom: 14px; color: var(--muted); font-size: .9rem; }
-        .read-more { color: var(--green); font-size: .88rem; font-weight: 750; text-decoration: none; }
-        .read-more:hover { text-decoration: underline; }
 
-        .closing-cta {
-            padding: 54px 25px;
-            border-radius: 28px;
-            background: #244c36;
-            color: #fff;
-            text-align: center;
+        .interest-card strong {
+            font-size: 0.96rem;
         }
-        .closing-cta h2 { max-width: 630px; margin: 0 auto 13px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; }
-        .closing-cta p { max-width: 490px; margin: 0 auto 22px; color: #d2e0d1; }
-        .closing-cta .button { background: var(--lime); color: #23472f; }
-        .closing-cta .button:hover { background: #e4f6b6; }
 
-        footer { padding: 28px 0; color: var(--muted); font-size: .84rem; }
-        .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-        footer p { margin: 0; }
-        footer a { color: var(--green); text-decoration: none; }
-        :focus-visible { outline: 3px solid #8bb66d; outline-offset: 3px; }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .goal-card {
+            padding: clamp(25px, 4vw, 38px);
+        }
+
+        .goal-card .timeline-stage {
+            display: block;
+            margin-bottom: 17px;
+        }
+
+        .goal-card h3 {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: -0.04em;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .achievement-card {
+            min-height: 190px;
+            padding: 25px;
+        }
+
+        .achievement-card .card-mark {
+            margin-bottom: 18px;
+        }
+
+        .contact-section {
+            padding-top: 30px;
+            padding-bottom: 86px;
+        }
+
+        .contact-panel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(30px, 7vw, 72px);
+            border-radius: 24px;
+            background: var(--green-dark);
+            color: white;
+        }
+
+        .contact-panel::after {
+            position: absolute;
+            right: -100px;
+            bottom: -240px;
+            width: 440px;
+            height: 440px;
+            border: 1px solid rgb(255 255 255 / 15%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 45px rgb(255 255 255 / 4%), 0 0 0 90px rgb(255 255 255 / 3%);
+            content: "";
+            pointer-events: none;
+        }
+
+        .contact-panel .eyebrow,
+        .contact-panel h2,
+        .contact-panel > p,
+        .contact-grid {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-panel .eyebrow {
+            color: var(--lime);
+        }
+
+        .contact-panel h2 {
+            max-width: 650px;
+        }
+
+        .contact-panel > p {
+            max-width: 550px;
+            margin-bottom: 30px;
+            color: rgb(255 255 255 / 74%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .contact-card {
+            padding: 16px 18px;
+            border-color: rgb(255 255 255 / 15%);
+            background: rgb(255 255 255 / 7%);
+            text-decoration: none;
+            transition: background 160ms ease;
+        }
+
+        .contact-card:hover {
+            background: rgb(255 255 255 / 13%);
+        }
+
+        .contact-card span,
+        .contact-card strong {
+            display: block;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-card span {
+            margin-bottom: 5px;
+            color: rgb(255 255 255 / 65%);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .contact-card strong {
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .footer-wrap {
+            display: flex;
+            min-height: 78px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-wrap p {
+            margin: 0;
+        }
+
+        .footer-wrap a {
+            color: var(--green);
+            text-decoration: none;
+        }
 
         @media (max-width: 900px) {
-            .hero-grid { gap: 28px; }
-            .hero-art { min-height: 380px; }
-            .topic-grid { grid-template-columns: repeat(2, 1fr); }
-            .tools-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .hero-wrap {
+                grid-template-columns: minmax(0, 1fr) minmax(250px, 0.76fr);
+                gap: 40px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
-        @media (max-width: 650px) {
-            .nav-wrap, .container { width: min(100% - 32px, 1120px); }
-            .nav-wrap { min-height: 66px; }
-            .nav-links { display: none; }
-            .hero { padding: 57px 0 40px; }
-            .hero-grid { grid-template-columns: 1fr; gap: 18px; }
-            h1 { font-size: clamp(2.8rem, 14vw, 4.3rem); }
-            .hero-art { min-height: 340px; margin-top: 3px; }
-            .art-card { width: min(88%, 380px); min-height: 290px; }
-            .plant { font-size: 7.5rem; }
-            .float-chip.water { left: 0; }
-            .float-chip.streak { right: 0; bottom: 9%; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); }
-            .stat { padding: 10px 8px; }
-            .stat:nth-child(3) { border-left: 0; }
-            .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
-            section.content-section { padding: 64px 0; }
-            .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
-            .section-heading p { margin-bottom: 0; }
-            .topic-grid, .tools-grid, .article-grid { grid-template-columns: 1fr; }
-            .topic-card { min-height: 0; }
-            .tool-card { padding: 21px; }
-            .article-art { min-height: 145px; }
-            .footer-row { align-items: flex-start; flex-direction: column; }
+
+        @media (max-width: 700px) {
+            html {
+                scroll-padding-top: 74px;
+            }
+
+            .nav-wrap,
+            .section,
+            .hero-wrap,
+            .footer-wrap {
+                width: min(var(--width), calc(100% - 36px));
+            }
+
+            .nav-wrap {
+                min-height: 66px;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 1px);
+                right: 0;
+                left: 0;
+                display: none;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 18px 16px;
+                border-bottom: 1px solid var(--line);
+                background: var(--page);
+            }
+
+            .nav-links.is-open {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .nav-links li:last-child {
+                padding-top: 10px;
+                border: 0;
+            }
+
+            .nav-links a,
+            .nav-links .nav-contact {
+                display: block;
+                padding: 13px 4px;
+                border: 0;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 66px 0 76px;
+            }
+
+            .hero-wrap {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            h1 {
+                font-size: clamp(3.35rem, 14vw, 5.4rem);
+            }
+
+            .portrait-wrap {
+                width: min(83%, 360px);
+                justify-self: center;
+            }
+
+            .portrait-note {
+                right: -22px;
+            }
+
+            .welcome-inner {
+                min-height: 76px;
+            }
+
+            .welcome-inner span {
+                display: none;
+            }
+
+            .about-grid,
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                min-height: 0;
+            }
+
+            .timeline-top {
+                margin-bottom: 20px;
+            }
+
+            .interests {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-card {
+                min-height: 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-wrap {
+                min-height: 72px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .detail-grid,
+            .card-grid,
+            .interests {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-card {
+                padding: 18px;
+            }
+
+            .footer-wrap {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                padding-block: 18px;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
         <nav class="nav-wrap" aria-label="Main navigation">
-            <a class="brand" href="#" aria-label="Wellnest home">
-                <span class="brand-mark" aria-hidden="true">✳</span> wellnest
-            </a>
-            <div class="nav-links">
-                <a href="#wellness">Wellness</a>
-                <a href="#tools">Free tools</a>
-                <a href="#read">Read & learn</a>
-            </div>
-            <a class="nav-cta" href="#tools">Explore tools <span aria-hidden="true">↗</span></a>
+            <a class="brand" href="#home" aria-label="Shashank, home">shashank<span>.</span></a>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16"></path>
+                </svg>
+            </button>
+            <ul class="nav-links" id="primary-navigation">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a class="nav-contact" href="#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container hero-grid">
+    <main id="main">
+        <section class="hero" id="home" aria-labelledby="home-title">
+            <div class="hero-wrap">
                 <div>
-                    <p class="eyebrow">Your everyday wellness companion</p>
-                    <h1>A little better,<br><em>every day.</em></h1>
-                    <p class="hero-copy">Healthy living isn't about getting everything right. It's the small, kind choices you make for yourself, one day at a time.</p>
+                    <p class="eyebrow">Aspiring engineer &amp; curious mind</p>
+                    <h1 id="home-title">Hello, I'm <span>Shashank.</span></h1>
+                    <p class="hero-copy">I’m a student engineer who enjoys learning by building, experimenting, and solving practical problems. This portfolio captures my journey, interests, and the goals I’m working toward.</p>
                     <div class="hero-actions">
-                        <a class="button" href="#tools">Find your next step <span aria-hidden="true">→</span></a>
-                        <a class="button secondary" href="#wellness">Explore wellness</a>
-                    </div>
-                    <div class="hero-note">
-                        <span class="avatars" aria-hidden="true"><span>🌿</span><span>☀️</span><span>💧</span></span>
-                        <span>Small habits. More feel-good days.</span>
+                        <a class="button" href="#about">
+                            Get to know me
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6"></path>
+                            </svg>
+                        </a>
+                        <a class="button button-secondary" href="#contact">Say hello</a>
                     </div>
                 </div>
-                <div class="hero-art" aria-label="Illustration celebrating a balanced, healthy lifestyle">
-                    <div class="sun-disc"></div>
-                    <div class="art-card">
-                        <span class="art-label">A moment for you</span>
-                        <span class="plant" aria-hidden="true">🪴</span>
-                        <span class="art-message">Grow at your own pace.</span>
+                <div class="portrait-wrap">
+                    <div class="portrait-card">
+                        <img src="C:/Users/shashank/OneDrive/Pictures/Camera imports/2026-09-11/1000009445.jpg" alt="Portrait of Shashank">
                     </div>
-                    <div class="float-chip water"><span class="chip-icon" aria-hidden="true">💧</span><span><strong>Stay hydrated</strong><small>One sip at a time</small></span></div>
-                    <div class="float-chip streak"><span class="chip-icon" aria-hidden="true">🌱</span><span><strong>Keep showing up</strong><small>Progress, not perfection</small></span></div>
+                    <div class="portrait-note">
+                        <strong>Welcome!</strong>
+                        Glad you stopped by.
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="quick-stats" aria-label="Wellness reminders">
-            <div class="container stats-row">
-                <div class="stat"><strong>Eat well</strong><span>Choose nourishing foods</span></div>
-                <div class="stat"><strong>Move more</strong><span>Find movement you enjoy</span></div>
-                <div class="stat"><strong>Rest deeply</strong><span>Make room to recharge</span></div>
-                <div class="stat"><strong>Feel your best</strong><span>Build habits that stick</span></div>
+        <div class="welcome-strip" aria-label="Welcome message">
+            <div class="section welcome-inner">
+                <p>Welcome to my corner of the internet. I’m glad you’re here.</p>
+                <span>A little about me</span>
             </div>
         </div>
 
-        <section class="content-section" id="wellness">
-            <div class="container">
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="section-heading">
+                <p class="eyebrow">A little about me</p>
+                <h2 id="about-title">The person behind the plans.</h2>
+                <p class="section-intro">I believe curiosity, consistency, and a willingness to learn can make even the biggest goals feel achievable.</p>
+            </div>
+            <div class="about-grid">
+                <article class="about-note">
+                    <p class="quote">"Stay curious. Keep learning. Build something that matters."</p>
+                    <p>I’m someone who likes to understand how systems work and improve the way we solve everyday problems. I enjoy learning through projects, experimenting with ideas, and staying open to feedback.</p>
+                </article>
+                <div class="detail-grid">
+                    <article class="detail-card">
+                        <span>Hometown</span>
+                        <strong>Bengaluru, India</strong>
+                    </article>
+                    <article class="detail-card">
+                        <span>Currently</span>
+                        <strong>B.Tech / Engineering student</strong>
+                    </article>
+                    <article class="detail-card">
+                        <span>My personality</span>
+                        <strong>Curious &amp; determined</strong>
+                    </article>
+                    <article class="detail-card">
+                        <span>Outside class</span>
+                        <strong>Photography &amp; creativity</strong>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="soft-section" id="education" aria-labelledby="education-title">
+            <div class="section">
                 <div class="section-heading">
-                    <div>
-                        <p class="eyebrow">Wellness, made doable</p>
-                        <h2>Healthy habits for your whole self.</h2>
+                    <p class="eyebrow">My learning journey</p>
+                    <h2 id="education-title">Education.</h2>
+                    <p class="section-intro">Each stage has added to my foundation and shaped how I approach learning, problem-solving, and growth.</p>
+                </div>
+                <div class="timeline">
+                    <article class="timeline-item">
+                        <div class="timeline-top">
+                            <span class="timeline-number" aria-hidden="true">01</span>
+                            <span class="timeline-stage">Secondary school</span>
+                        </div>
+                        <h3>St. Joseph's High School</h3>
+                        <p>10th standard — CBSE board, strong academic base and disciplined learning habits.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-top">
+                            <span class="timeline-number" aria-hidden="true">02</span>
+                            <span class="timeline-stage">Higher secondary / PUC</span>
+                        </div>
+                        <h3>Pre-University College</h3>
+                        <p>12th / PUC — Science stream with focus on mathematics, physics, and chemistry.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-top">
+                            <span class="timeline-number" aria-hidden="true">03</span>
+                            <span class="timeline-stage">Undergraduate</span>
+                        </div>
+                        <h3>Engineering degree</h3>
+                        <p>B.Tech in Computer Science / related discipline, building practical engineering skills.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills" aria-labelledby="skills-title">
+            <div class="section-heading">
+                <p class="eyebrow">Things I'm learning</p>
+                <h2 id="skills-title">My skills.</h2>
+                <p class="section-intro">A growing toolkit built through practice, study, and a lot of hands-on work.</p>
+            </div>
+            <div class="card-grid">
+                <article class="skill-card">
+                    <span class="card-mark" aria-hidden="true">01</span>
+                    <h3>Computer basics</h3>
+                    <p>Comfort with digital tools, system navigation, and everyday productivity workflows.</p>
+                    <div class="tag-list">
+                        <span class="tag">Computer basics</span>
+                        <span class="tag">Internet research</span>
                     </div>
-                    <p>There isn't one perfect routine. Explore practical, feel-good basics and choose what works for your life.</p>
-                </div>
-                <div class="topic-grid">
-                    <article class="topic-card">
-                        <span class="topic-icon" aria-hidden="true">🥑</span>
-                        <h3>Eat well</h3>
-                        <p>Build balanced plates with colorful, nourishing foods and make room for the meals you love.</p>
-                    </article>
-                    <article class="topic-card">
-                        <span class="topic-icon" aria-hidden="true">🏃</span>
-                        <h3>Move your way</h3>
-                        <p>From a stretch break to a brisk walk, find enjoyable ways to bring more movement into your day.</p>
-                    </article>
-                    <article class="topic-card">
-                        <span class="topic-icon" aria-hidden="true">🌙</span>
-                        <h3>Rest & reset</h3>
-                        <p>Create a calming wind-down routine and give your body the space it needs to recharge.</p>
-                    </article>
-                    <article class="topic-card">
-                        <span class="topic-icon" aria-hidden="true">💧</span>
-                        <h3>Hydrate often</h3>
-                        <p>Keep water close by and sip regularly. Your needs change with your day and activity.</p>
-                    </article>
-                </div>
+                </article>
+                <article class="skill-card">
+                    <span class="card-mark" aria-hidden="true">02</span>
+                    <h3>Programming</h3>
+                    <p>Building confidence with coding fundamentals, logic, and problem-solving.</p>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <span class="card-mark" aria-hidden="true">03</span>
+                    <h3>Technical skills</h3>
+                    <p>Working with web design, UI basics, version control, and structured project work.</p>
+                    <div class="tag-list">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <span class="card-mark" aria-hidden="true">04</span>
+                    <h3>Other strengths</h3>
+                    <p>Creative thinking, patience, teamwork, and a self-driven approach to growth.</p>
+                    <div class="tag-list">
+                        <span class="tag">Communication</span>
+                        <span class="tag">Teamwork</span>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section class="content-section tools-section" id="tools">
-            <div class="container">
-                <div class="section-heading center">
-                    <p class="eyebrow">A toolkit for feeling good</p>
-                    <h2>Little tools, healthier routines.</h2>
-                    <p>Quick, friendly ways to check in, stay curious and celebrate the progress you make.</p>
-                </div>
-                <div class="tools-grid">
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">⚖️</span><h3>BMI calculator</h3></div>
-                        <p>Estimate your body mass index from your height and weight.</p>
-                        <form id="bmi-form">
-                            <div class="form-row">
-                                <div class="field"><label for="bmi-height">Height (cm)</label><input id="bmi-height" type="number" min="80" max="250" step="0.1" placeholder="e.g. 170" required></div>
-                                <div class="field"><label for="bmi-weight">Weight (kg)</label><input id="bmi-weight" type="number" min="20" max="350" step="0.1" placeholder="e.g. 65" required></div>
-                            </div>
-                            <button class="button" type="submit">Calculate BMI</button>
-                        </form>
-                        <p class="result" id="bmi-result" aria-live="polite"></p>
-                        <p class="fine-print">BMI is a general screening measure, not a diagnosis or a complete picture of health.</p>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">🚰</span><h3>Water intake guide</h3></div>
-                        <p>Get a simple daily hydration estimate to use as a starting point.</p>
-                        <form id="water-form">
-                            <div class="field"><label for="water-weight">Your weight (kg)</label><input id="water-weight" type="number" min="20" max="300" step="0.1" placeholder="e.g. 65" required></div>
-                            <button class="button" type="submit">Get my estimate</button>
-                        </form>
-                        <p class="result" id="water-result" aria-live="polite"></p>
-                        <p class="fine-print">This is a rough guide, not medical advice. Needs vary with health, climate and activity.</p>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">✅</span><h3>Daily habit tracker</h3></div>
-                        <p>Pick a few small wins today. Your check-ins are saved on this device.</p>
-                        <ul class="habit-list" id="habit-list">
-                            <li><label><input type="checkbox" value="water"> Had a glass of water</label></li>
-                            <li><label><input type="checkbox" value="move"> Took a movement break</label></li>
-                            <li><label><input type="checkbox" value="rest"> Made time to unwind</label></li>
-                        </ul>
-                        <div class="habit-progress"><span id="habit-count">0 of 3 habits</span><span id="habit-percent">0%</span></div>
-                        <div class="progress-track" role="progressbar" aria-label="Daily habits completed" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="habit-progress"><div class="progress-fill"></div></div>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">💡</span><h3>Random health tip</h3></div>
-                        <p>A little inspiration for your next healthy choice.</p>
-                        <div class="tip-box"><p id="tip-text" aria-live="polite">A short walk can be a lovely way to reset your focus.</p><span id="tip-count">TIP 1</span></div>
-                        <button class="button secondary" id="new-tip" type="button">Show me another tip <span aria-hidden="true">↻</span></button>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">🧠</span><h3>Health quiz</h3></div>
-                        <p>Test your everyday wellness know-how.</p>
-                        <p class="quiz-question" id="quiz-question"></p>
-                        <div class="quiz-options" id="quiz-options"></div>
-                        <div class="quiz-controls"><span class="counter-unit" id="quiz-status" aria-live="polite"></span><button class="button secondary" id="quiz-next" type="button" hidden>Next question →</button></div>
-                        <p class="result" id="quiz-feedback" aria-live="polite"></p>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">⏱️</span><h3>Exercise stopwatch</h3></div>
-                        <p>Time a walk, workout, stretch or any movement break.</p>
-                        <div class="timer-display" id="timer-display" role="timer" aria-label="00 minutes and 00 seconds">00:00</div>
-                        <div class="timer-controls">
-                            <button class="button" id="timer-start" type="button">Start</button>
-                            <button class="button secondary" id="timer-reset" type="button">Reset</button>
-                        </div>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">👟</span><h3>Progress counter</h3></div>
-                        <p>Keep count of your movement breaks, reps, laps or anything you like.</p>
-                        <div class="counter-line"><div><div class="counter-number" id="progress-count" aria-live="polite">0</div><div class="counter-unit">steps counted</div></div><span class="chip-icon" aria-hidden="true">✨</span></div>
-                        <div class="counter-controls">
-                            <button class="button" id="counter-add" type="button" aria-label="Add one">+</button>
-                            <button class="button secondary" id="counter-subtract" type="button" aria-label="Subtract one">−</button>
-                            <button class="button secondary" id="counter-reset" type="button">Reset</button>
-                        </div>
-                    </article>
-
-                    <article class="tool-card">
-                        <div class="tool-title"><span class="topic-icon" aria-hidden="true">🌿</span><h3>A gentle reminder</h3></div>
-                        <p>Wellness is personal. You don't need to do it all at once.</p>
-                        <div class="tip-box"><p>Choose one small thing that feels good for you today. That's a great place to start.</p><span>YOUR PACE, YOUR WAY</span></div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-section" id="read">
-            <div class="container">
+        <section class="soft-section" id="interests" aria-labelledby="interests-title">
+            <div class="section">
                 <div class="section-heading">
-                    <div><p class="eyebrow">Ideas to take with you</p><h2>Good reads for everyday health.</h2></div>
-                    <p>Simple reminders to help you make informed choices and build habits that feel sustainable.</p>
+                    <p class="eyebrow">Away from the desk</p>
+                    <h2 id="interests-title">Hobbies &amp; interests.</h2>
+                    <p class="section-intro">The things that keep me balanced, inspired, and energized beyond academics and projects.</p>
                 </div>
-                <div class="article-grid">
-                    <article class="article-card">
-                        <div class="article-art" aria-hidden="true">🥗</div>
-                        <div class="article-body">
-                            <span class="article-tag">Healthy eating</span>
-                            <h3>Make your next meal a little more colorful</h3>
-                            <p>Try adding a fruit or vegetable you enjoy. Small, satisfying additions can be easier to keep up.</p>
-                            <a class="read-more" href="#wellness">Explore food habits <span aria-hidden="true">→</span></a>
-                        </div>
+                <div class="interests">
+                    <article class="interest-card"><span class="interest-icon" aria-hidden="true">01</span><strong>Cricket</strong></article>
+                    <article class="interest-card"><span class="interest-icon" aria-hidden="true">02</span><strong>Music</strong></article>
+                    <article class="interest-card"><span class="interest-icon" aria-hidden="true">03</span><strong>Reading</strong></article>
+                    <article class="interest-card"><span class="interest-icon" aria-hidden="true">04</span><strong>Travel</strong></article>
+                    <article class="interest-card"><span class="interest-icon" aria-hidden="true">05</span><strong>Photography</strong></article>
+                    <article class="interest-card"><span class="interest-icon" aria-hidden="true">06</span><strong>Learning new tools</strong></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="goals" aria-labelledby="goals-title">
+            <div class="section-heading">
+                <p class="eyebrow">Looking ahead</p>
+                <h2 id="goals-title">My goals.</h2>
+                <p class="section-intro">I’m focused on building a strong foundation today while keeping a bigger vision for the future in view.</p>
+            </div>
+            <div class="goals-grid">
+                <article class="goal-card">
+                    <span class="timeline-stage">For the near future</span>
+                    <h3>Short-term goals</h3>
+                    <p>Strengthen my engineering fundamentals, work on meaningful projects, and keep improving my coding and design skills through practice.</p>
+                </article>
+                <article class="goal-card">
+                    <span class="timeline-stage">The bigger picture</span>
+                    <h3>Long-term direction</h3>
+                    <p>Grow into a capable engineer who can solve real problems, contribute to impactful work, and keep learning throughout my career.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="soft-section" id="achievements" aria-labelledby="achievements-title">
+            <div class="section">
+                <div class="section-heading">
+                    <p class="eyebrow">Milestones along the way</p>
+                    <h2 id="achievements-title">Achievements.</h2>
+                    <p class="section-intro">A few milestones and experiences that reflect my dedication, curiosity, and growth.</p>
+                </div>
+                <div class="achievement-grid">
+                    <article class="achievement-card">
+                        <span class="card-mark" aria-hidden="true">*</span>
+                        <h3>Certificates</h3>
+                        <p>Completed online learning modules in web development, programming basics, and digital skills.</p>
                     </article>
-                    <article class="article-card">
-                        <div class="article-art" aria-hidden="true">🚶</div>
-                        <div class="article-body">
-                            <span class="article-tag">Movement & fitness</span>
-                            <h3>Movement counts, in all its forms</h3>
-                            <p>A few minutes of stretching or a walk around the block can be a worthwhile way to get moving.</p>
-                            <a class="read-more" href="#tools">Try the stopwatch <span aria-hidden="true">→</span></a>
-                        </div>
+                    <article class="achievement-card">
+                        <span class="card-mark" aria-hidden="true">*</span>
+                        <h3>Competitions &amp; awards</h3>
+                        <p>Recognized for consistent effort in academic projects, participation, and team-based problem-solving.</p>
                     </article>
-                    <article class="article-card">
-                        <div class="article-art" aria-hidden="true">😴</div>
-                        <div class="article-body">
-                            <span class="article-tag">Sleep & wellbeing</span>
-                            <h3>Build a bedtime routine that feels calm</h3>
-                            <p>A steady wind-down cue, like dimming lights, can help make space for a more restful evening.</p>
-                            <a class="read-more" href="#wellness">Explore restful habits <span aria-hidden="true">→</span></a>
-                        </div>
+                    <article class="achievement-card">
+                        <span class="card-mark" aria-hidden="true">*</span>
+                        <h3>Other milestones</h3>
+                        <p>Built personal projects and learning exercises that helped turn theory into practical experience.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="container" aria-label="Health awareness">
-            <div class="closing-cta">
-                <h2>Your health journey is yours.</h2>
-                <p>Listen to your body, make room for what matters, and reach out to a health professional when you need personal advice.</p>
-                <a class="button" href="#tools">Take a small step today <span aria-hidden="true">→</span></a>
+        <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+            <div class="contact-panel">
+                <p class="eyebrow">Let's connect</p>
+                <h2 id="contact-title">Have a question or an idea?</h2>
+                <p>I’d be happy to hear from you. Whether you want to collaborate, ask about my work, or just say hello, I’m always open to a conversation.</p>
+                <div class="contact-grid">
+                    <a class="contact-card" href="mailto:shashank@example.com">
+                        <span>Email</span>
+                        <strong>shashank@example.com</strong>
+                    </a>
+                    <a class="contact-card" href="https://www.linkedin.com/in/shashank-dev" target="_blank" rel="noopener noreferrer">
+                        <span>LinkedIn</span>
+                        <strong>linkedin.com/in/shashank-dev</strong>
+                    </a>
+                    <a class="contact-card" href="https://github.com/shashank984515-hub" target="_blank" rel="noopener noreferrer">
+                        <span>GitHub</span>
+                        <strong>github.com/shashank984515-hub</strong>
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container footer-row">
-            <p><a class="brand" href="#"><span class="brand-mark" aria-hidden="true">✳</span> wellnest</a></p>
-            <p>Helpful everyday wellness information, not a substitute for professional medical care.</p>
-            <p>Made for a healthier, happier everyday.</p>
-        </div>
+    <footer class="footer-wrap">
+        <p>(c) <span id="current-year">2026</span> Shashank. Made with care.</p>
+        <a href="#home">Back to top</a>
     </footer>
 
     <script>
-        const bmiForm = document.querySelector("#bmi-form");
-        bmiForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const height = Number(document.querySelector("#bmi-height").value) / 100;
-            const weight = Number(document.querySelector("#bmi-weight").value);
-            const result = document.querySelector("#bmi-result");
-            if (!Number.isFinite(height) || !Number.isFinite(weight) || height <= 0 || weight <= 0) {
-                result.textContent = "Enter a valid height and weight to calculate your estimate.";
-                return;
-            }
-            const bmi = weight / (height * height);
-            let range = "above the commonly used reference range";
-            if (bmi < 18.5) range = "below the commonly used reference range";
-            else if (bmi < 25) range = "within the commonly used reference range";
-            else if (bmi >= 30) range = "above the commonly used reference range";
-            result.innerHTML = `Estimated BMI: <strong>${bmi.toFixed(1)}</strong> — ${range}.`;
-        });
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navigation = document.querySelector("#primary-navigation");
 
-        document.querySelector("#water-form").addEventListener("submit", (event) => {
-            event.preventDefault();
-            const weight = Number(document.querySelector("#water-weight").value);
-            const result = document.querySelector("#water-result");
-            if (!Number.isFinite(weight) || weight <= 0) {
-                result.textContent = "Enter a valid weight to see your estimate.";
-                return;
-            }
-            const liters = weight * 0.035;
-            const glasses = Math.round(liters / 0.25);
-            result.innerHTML = `A rough starting point: about <strong>${liters.toFixed(1)} L</strong> (around ${glasses} glasses of 250 ml) per day.`;
-        });
-
-        const habitBoxes = [...document.querySelectorAll("#habit-list input")];
-        const habitStorageKey = "wellnest-habits";
-        try {
-            const savedHabits = JSON.parse(localStorage.getItem(habitStorageKey) || "[]");
-            habitBoxes.forEach((box) => { box.checked = savedHabits.includes(box.value); });
-        } catch (error) {
-            console.warn("Could not load saved habit check-ins.", error);
+        function closeMenu() {
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open menu");
+            navigation.classList.remove("is-open");
         }
-        function updateHabits() {
-            const completed = habitBoxes.filter((box) => box.checked).length;
-            const percent = Math.round(completed / habitBoxes.length * 100);
-            document.querySelector("#habit-count").textContent = `${completed} of ${habitBoxes.length} habits`;
-            document.querySelector("#habit-percent").textContent = `${percent}%`;
-            document.querySelector("#habit-progress").setAttribute("aria-valuenow", String(completed));
-            document.querySelector(".progress-fill").style.width = `${percent}%`;
-            try {
-                localStorage.setItem(habitStorageKey, JSON.stringify(habitBoxes.filter((box) => box.checked).map((box) => box.value)));
-            } catch (error) {
-                console.warn("Could not save habit check-ins.", error);
-            }
-        }
-        habitBoxes.forEach((box) => box.addEventListener("change", updateHabits));
-        updateHabits();
 
-        const tips = [
-            "A short walk can be a lovely way to reset your focus.",
-            "Keep a reusable water bottle nearby as a gentle hydration reminder.",
-            "A few slow, comfortable breaths can create a pause in a busy day.",
-            "Try adding a colorful fruit or vegetable to your next meal.",
-            "A consistent wind-down routine can make evenings feel more restful.",
-            "Stretching for a minute is still a movement break worth celebrating."
-        ];
-        let tipIndex = 0;
-        document.querySelector("#new-tip").addEventListener("click", () => {
-            tipIndex = (tipIndex + 1 + Math.floor(Math.random() * (tips.length - 1))) % tips.length;
-            document.querySelector("#tip-text").textContent = tips[tipIndex];
-            document.querySelector("#tip-count").textContent = `TIP ${tipIndex + 1}`;
+        menuToggle.addEventListener("click", () => {
+            const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+            menuToggle.setAttribute("aria-expanded", String(!isOpen));
+            menuToggle.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+            navigation.classList.toggle("is-open", !isOpen);
         });
 
-        const questions = [
-            { question: "Which is a simple way to add more movement to your day?", options: ["Take a short walk", "Skip every break", "Stay still all day"], answer: 0, note: "A short walk is an accessible way to move. Choose what feels right for your body." },
-            { question: "What can help you remember to drink water?", options: ["Keep water nearby", "Wait until bedtime", "Avoid drinking all day"], answer: 0, note: "Having water within reach can be a helpful reminder to sip throughout your day." },
-            { question: "Which can support a calming bedtime routine?", options: ["A relaxing wind-down cue", "A different bedtime every night", "Bright screens right before bed"], answer: 0, note: "A calming, consistent wind-down routine can help you make space for rest." }
-        ];
-        let questionIndex = 0;
-        let quizScore = 0;
-        let answered = false;
-        const quizQuestion = document.querySelector("#quiz-question");
-        const quizOptions = document.querySelector("#quiz-options");
-        const quizStatus = document.querySelector("#quiz-status");
-        const quizFeedback = document.querySelector("#quiz-feedback");
-        const quizNext = document.querySelector("#quiz-next");
-        function renderQuestion() {
-            answered = false;
-            const item = questions[questionIndex];
-            quizQuestion.textContent = item.question;
-            quizStatus.textContent = `Question ${questionIndex + 1} of ${questions.length}`;
-            quizFeedback.textContent = "";
-            quizNext.hidden = true;
-            quizOptions.replaceChildren();
-            item.options.forEach((option, index) => {
-                const button = document.createElement("button");
-                button.className = "quiz-option";
-                button.type = "button";
-                button.textContent = option;
-                button.addEventListener("click", () => {
-                    if (answered) return;
-                    answered = true;
-                    const correct = index === item.answer;
-                    if (correct) quizScore += 1;
-                    button.classList.add(correct ? "correct" : "incorrect");
-                    [...quizOptions.children].forEach((choice, choiceIndex) => {
-                        choice.disabled = true;
-                        if (choiceIndex === item.answer) choice.classList.add("correct");
-                    });
-                    quizFeedback.textContent = `${correct ? "That's right! " : "Good try. "}${item.note}`;
-                    quizNext.hidden = false;
-                    quizNext.textContent = questionIndex === questions.length - 1 ? "See my score →" : "Next question →";
-                });
-                quizOptions.append(button);
-            });
-        }
-        quizNext.addEventListener("click", () => {
-            if (questionIndex < questions.length - 1) {
-                questionIndex += 1;
-                renderQuestion();
-            } else {
-                quizQuestion.textContent = "Nice work taking a moment to learn!";
-                quizOptions.replaceChildren();
-                quizStatus.textContent = `Your score: ${quizScore} of ${questions.length}`;
-                quizFeedback.textContent = "Small, steady choices can add up. Take what works for you.";
-                quizNext.textContent = "Try again ↻";
-                quizNext.onclick = () => {
-                    questionIndex = 0;
-                    quizScore = 0;
-                    quizNext.onclick = null;
-                    renderQuestion();
-                };
+        navigation.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                closeMenu();
             }
         });
-        renderQuestion();
 
-        let elapsedSeconds = 0;
-        let timerInterval = null;
-        const timerDisplay = document.querySelector("#timer-display");
-        function renderTimer() {
-            const minutes = Math.floor(elapsedSeconds / 60).toString().padStart(2, "0");
-            const seconds = (elapsedSeconds % 60).toString().padStart(2, "0");
-            timerDisplay.textContent = `${minutes}:${seconds}`;
-            timerDisplay.setAttribute("aria-label", `${minutes} minutes and ${seconds} seconds`);
-        }
-        document.querySelector("#timer-start").addEventListener("click", (event) => {
-            if (timerInterval !== null) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                event.currentTarget.textContent = "Resume";
-            } else {
-                timerInterval = setInterval(() => { elapsedSeconds += 1; renderTimer(); }, 1000);
-                event.currentTarget.textContent = "Pause";
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
             }
         });
-        document.querySelector("#timer-reset").addEventListener("click", () => {
-            if (timerInterval !== null) clearInterval(timerInterval);
-            timerInterval = null;
-            elapsedSeconds = 0;
-            renderTimer();
-            document.querySelector("#timer-start").textContent = "Start";
-        });
 
-        let progressCount = 0;
-        const progressDisplay = document.querySelector("#progress-count");
-        function renderProgress() { progressDisplay.textContent = String(progressCount); }
-        document.querySelector("#counter-add").addEventListener("click", () => { progressCount += 1; renderProgress(); });
-        document.querySelector("#counter-subtract").addEventListener("click", () => { progressCount = Math.max(0, progressCount - 1); renderProgress(); });
-        document.querySelector("#counter-reset").addEventListener("click", () => { progressCount = 0; renderProgress(); });
+        document.querySelector("#current-year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
